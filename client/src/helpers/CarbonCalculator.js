@@ -1,4 +1,4 @@
-export const calculator = function(footprint){
+const CarbonCalculator = function(footprint){
   let score = 0
   if (footprint.drive_car === false){
     score += 2.4;
@@ -26,3 +26,5 @@ export const calculator = function(footprint){
   }
   return Math.floor(score)
 };
+
+module.exports = CarbonCalculator;
