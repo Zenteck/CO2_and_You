@@ -1,21 +1,11 @@
 <template lang="html">
 <div id="app">
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <h1>CO<sub>2</sub> and You!</h1>
-  <carbon-form />
-  <carbon-score />
-  <carbon-comparison  />
-  <carbon-history :footprints="footprints"/>
-</div>
-=======
->>>>>>> develop
 
   <h1>CO2 and You</h1>
-=======
+
   <vue-title title="CO2 & You"></vue-title>
   <h1>CO<sub>2</sub> & You</h1>
->>>>>>> 1cd9e9c67d792b3c55ee1fd904602a8f9869deb0
+
   <carbon-form/>
   <carbon-score :footprints="footprints" :score="score"/>
   <carbon-comparison :score="score" />
