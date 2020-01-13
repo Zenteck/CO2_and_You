@@ -1,6 +1,6 @@
 <template lang="html">
 <div id="app">
-  <h1>CO2 and You!</h1>
+  <h1>CO<sub>2</sub> and You!</h1>
   <carbon-form />
   <carbon-score />
   <carbon-comparison  />
