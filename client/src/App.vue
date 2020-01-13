@@ -1,6 +1,7 @@
 <template lang="html">
 <div id="app">
 <<<<<<< HEAD
+<<<<<<< HEAD
   <h1>CO<sub>2</sub> and You!</h1>
   <carbon-form />
   <carbon-score />
@@ -11,26 +12,33 @@
 >>>>>>> develop
 
   <h1>CO2 and You</h1>
+=======
+  <vue-title title="CO2 & You"></vue-title>
+  <h1>CO<sub>2</sub> & You</h1>
+>>>>>>> 1cd9e9c67d792b3c55ee1fd904602a8f9869deb0
   <carbon-form/>
   <carbon-score :footprints="footprints" :score="score"/>
   <carbon-comparison :score="score" />
-  <carbon-history :footprints="footprints" />
+  <carbon-history v-if="carbonHistory=true" :footprints="footprints" />
 </div>
 </template>
 
 <script>
+  import VueTitle from './components/VueTitle';
   import CarbonForm from './components/CarbonForm';
   import CarbonScore from './components/CarbonScore';
   import CarbonComparison from './components/CarbonComparison';
   import CarbonHistory from './components/CarbonHistory';
   import { eventBus } from './main';
   import CarbonService from './services/CarbonService';
+  import {calculator} from './helpers/CarbonCalculator';
+  import Chart from './components/Chart.vue'
 
   export default {
     name: 'app',
     data () {
       return {
-        footprints: []
+        footprints: [],
       }
   },
   computed: {
@@ -38,41 +46,18 @@
       return this.footprints[this.footprints.length -1];
     },
     score: function(){
-      let score = 0.0
-      if (this.footprint.drive_car === false){
-        score += 2.4;
-      }
-      if (this.footprint.fly_plane === false){
-        score += 1.6;
-      }
-      if (this.footprint.renewable_energy === true){
-        score += 1.5;
-      }
-      if (this.footprint.vegan === true){
-        score += 0.8;
-      }
-      if (this.footprint.cold_water_wash === true){
-        score += 0.247;
-      }
-      if (this.footprint.recycle === true){
-        score += 0.2125;
-      }
-      if (this.footprint.tumble_dryer === false){
-        score += 0.21;
-      }
-      if (this.footprint.energy_saving_lightbulbs === true){
-        score += 0.1;
-      }
-      return Math.floor(score)
+      return calculator(this.footprint)
 }
 },
 
 
 components: {
+    'vue-title': VueTitle,
     'carbon-form': CarbonForm,
     'carbon-score': CarbonScore,
     'carbon-comparison': CarbonComparison,
-    'carbon-history': CarbonHistory
+    'carbon-history': CarbonHistory,
+    'chart': Chart
   },
 
   mounted() {
@@ -100,12 +85,8 @@ components: {
 
 <style>
 
-  html {
-    height: 100%;
-  }
   body {
     background: url('https://posterstore.co.uk/images/zoom/331.jpg') no-repeat;
-    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
